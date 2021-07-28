@@ -21,7 +21,6 @@
 }
 
 .big-flex :hover {
-  background-color: indianred;
   transition: height 0.25s linear;
 }
 
