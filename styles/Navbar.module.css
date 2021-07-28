@@ -1,0 +1,16 @@
+.menu-item {
+  transition-timing-function: ease;
+  transition: 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.menu-item:hover {
+  filter: brightness(85%);
+  transition: 0.2s;
+}
+
+.menu-item p {
+  width: 100%;
+  text-align: left;
+}
