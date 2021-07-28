@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Heading, Stack, StylesProvider, Text, Center, useDisclosure } from "@chakra-ui/react"
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure } from "@chakra-ui/react"
+import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import styles from '../styles/Navbar.module.css'
 
 export default function Navbar(props) {
@@ -7,7 +7,7 @@ export default function Navbar(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
 
-  console.log(styles)
+  // console.log(styles)
   return (
     <Flex
       as="nav"
@@ -16,6 +16,7 @@ export default function Navbar(props) {
       wrap="wrap"
       bg="teal.500"
       color="white"
+      className={styles["big-flex"]}
       {...props}
     >
       <Flex align="center" mr={5} mt={6} mb={6} ml={6} pointerEvents="none">
@@ -37,7 +38,8 @@ export default function Navbar(props) {
         width={{ base: "full", md: "auto" }}
         alignItems="center"
         flexGrow={1}
-        spacing={0}
+        spacing={{base: 3, md: 1}}
+        className={styles["stack"]}
       >
         { categories.map((val, idx) => {
           return (
@@ -48,6 +50,7 @@ export default function Navbar(props) {
               paddingX="0.5em"
               bg="teal.500"
             >
+              <StarIcon margin="0.2em" ml={{base: "1em", md: "0.2em"}}/>
               <p>
                 {val}
               </p>
@@ -61,7 +64,7 @@ export default function Navbar(props) {
         mt={{ base: 4, md: 0 }}
       >
         <Button
-          mr={6} mt={6} mb={6} ml={5}
+          mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
           variant="outline"
           _hover={{ bg: "teal.700", borderColor: "teal.700" }}
         >

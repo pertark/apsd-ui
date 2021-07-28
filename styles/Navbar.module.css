@@ -14,3 +14,17 @@
   width: 100%;
   text-align: left;
 }
+
+.big-flex {
+  transition: height 0.25s linear;
+ 
+}
+
+.big-flex :hover {
+  background-color: indianred;
+  transition: height 0.25s linear;
+}
+
+.stack {
+  transition: height 0.25s linear;
+}
