@@ -3,7 +3,7 @@ import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import styles from '../styles/Navbar.module.css'
 
 export default function Navbar(props) {
-  const categories = ["math", "fuck i don't know", "something else", "more test data"]
+  const categories = ["math", "i don't know", "something else", "more test data"]
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
 
@@ -14,7 +14,7 @@ export default function Navbar(props) {
       align="center"
       justify="space-between"
       wrap="wrap"
-      bg="teal.500"
+      bg="ap.200"
       color="white"
       className={styles["big-flex"]}
       {...props}
@@ -48,11 +48,11 @@ export default function Navbar(props) {
               h="100%" 
               className={styles['menu-item']}
               paddingX="0.5em"
-              bg="teal.500"
+              bg="ap.200"
             >
               <StarIcon margin="0.2em" ml={{base: "1em", md: "0.2em"}}/>
               <p>
-                {val}
+                <b>{val}</b>
               </p>
             </Center>
           )
@@ -66,7 +66,7 @@ export default function Navbar(props) {
         <Button
           mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
           variant="outline"
-          _hover={{ bg: "teal.700", borderColor: "teal.700" }}
+          _hover={{ bg: "ap.200", borderColor: "ap.100" }}
         >
           Log in
         </Button>
