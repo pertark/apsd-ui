@@ -3,7 +3,7 @@ FROM node:16
 WORKDIR /ui
 
 # Copy content
-COPY ./* ./
+COPY . .
 
 RUN npm install
 
