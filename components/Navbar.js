@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, Spacer } from "@chakra-ui/react"
 import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import styles from '../styles/Navbar.module.css'
 
@@ -41,7 +41,7 @@ export default function Navbar(props) {
         spacing={{base: 3, md: 1}}
         className={styles["stack"]}
       >
-        { categories.map((val, idx) => {
+        { !!props.authed ? categories.map((val, idx) => {
           return (
             <Center 
               key={idx} 
@@ -56,7 +56,8 @@ export default function Navbar(props) {
               </p>
             </Center>
           )
-        }) }
+        }) : <Box></Box>
+       }
       </Stack>
 
       <Box
@@ -65,10 +66,12 @@ export default function Navbar(props) {
       >
         <Button
           mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
-          variant="outline"
-          _hover={{ bg: "ap.200", borderColor: "ap.100" }}
+          variant={"outline"}
+          
+          _hover={{ bg: "ap.300", borderColor: "ap.100" }}
+          onClick={!!props.authed ? ()=>{location.href = "/oauth/logout"} : ()=>{location.href = "/oauth/login"}}
         >
-          Log in
+          {!!props.authed ? "Log out": "Log in"}
         </Button>
       </Box>
     </Flex>

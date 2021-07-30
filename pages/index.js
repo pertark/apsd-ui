@@ -30,10 +30,8 @@ export default function Home() {
   })
 
   return (
-    <Layout>
-    <p>
-      {body}
-    </p>
+    <Layout authed={true}>
+      <p>{body}</p>
     </Layout>
   )
 }
