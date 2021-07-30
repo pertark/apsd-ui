@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
       ap: {
         100: "#f7fafc",
         200: "#3c92bc",
+        300: "#337CA0",
         900: "#1a202c",
       },
     },

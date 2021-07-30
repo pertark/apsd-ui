@@ -6,7 +6,7 @@ import Footer from "./Footer";
 export default function Layout(props) {
   return (
     <Stack>
-      <Navbar></Navbar>
+      <Navbar authed={props.authed}></Navbar>
       <Box>
         { props.children }
       </Box>

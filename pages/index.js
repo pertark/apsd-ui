@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 
 export default function Home() {
   return (
-    <Layout>
+    <Layout authed={true}>
     <p>sample text</p>
 
     
