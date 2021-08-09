@@ -10,8 +10,9 @@ export default function Navbar(props) {
 
   useEffect( () => {
     if (props.authed) {
-      fetch('/api/category/get_categories').then((response) => {
-        response.json.forEach(category => {
+      fetch('/api/category/get_categories').then(async (response) => {
+        let body = await response.json();
+        body.forEach(category => {
           categories.push(category.name);
         });
       })
