@@ -3,9 +3,19 @@ import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import styles from '../styles/Navbar.module.css'
 
 export default function Navbar(props) {
-  const categories = ["math", "i don't know", "something else", "more test data"]
+  var [categories, setCategories] = useState([])
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
+
+  useEffect( () => {
+    if (props.authed) {
+      fetch('/api/category/get_categories').then((response) => {
+        response.json.forEach(category => {
+          categories.push(category.name);
+        });
+      })
+    }
+  }, [props.authed])
 
   // console.log(styles)
   return (
