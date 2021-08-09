@@ -52,7 +52,7 @@ export default function Navbar(props) {
         spacing={{base: 3, md: 1}}
         className={styles["stack"]}
       >
-        { categories.map((val, idx) => {
+        {!!props.authed ? categories.map((val, idx) => {
           return (
             <Center 
               key={idx} 
