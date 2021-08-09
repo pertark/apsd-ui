@@ -1,6 +1,7 @@
 import { Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, Spacer } from "@chakra-ui/react"
 import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import styles from '../styles/Navbar.module.css'
+import { useState, useEffect } from 'react';
 
 export default function Navbar(props) {
   var [categories, setCategories] = useState([])
@@ -9,13 +10,15 @@ export default function Navbar(props) {
 
   useEffect( () => {
     if (props.authed) {
+      let categoriesTemp = [];
       fetch('/api/category/get_categories').then((response) => {
         response.json.forEach(category => {
-          categories.push(category.name);
+          categoriesTemp.push(category.name);
         });
+        setCategories(categoriesTemp);
       })
     }
-  }, [props.authed])
+  }, [props.authed, categories, setCategories])
 
   // console.log(styles)
   return (
