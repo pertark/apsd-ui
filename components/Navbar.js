@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, Spacer } from "@chakra-ui/react"
 import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
+import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
 import { useState, useEffect } from 'react';
 
@@ -78,15 +79,17 @@ export default function Navbar(props) {
         display={{ base: isOpen ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Button
-          mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
-          variant={"outline"}
-          
-          _hover={{ bg: "ap.300", borderColor: "ap.100" }}
-          onClick={!!props.authed ? ()=>{location.href = "/oauth/logout"} : ()=>{location.href = "/oauth/login"}}
-        >
-          {!!props.authed ? "Log out": "Log in"}
-        </Button>
+        <Link href={!!props.authed ? "/oauth/logout" : "/oauth/login"}>
+          <Button
+            mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
+            variant={"outline"}
+            
+            _hover={{ bg: "ap.300", borderColor: "ap.100" }}
+            // onClick={!!props.authed ? ()=>{location.href = "/oauth/logout"} : ()=>{location.href = "/oauth/login"}}
+          >
+            {!!props.authed ? "Log out": "Log in"}
+          </Button>
+        </Link>
       </Box>
     </Flex>
   );
