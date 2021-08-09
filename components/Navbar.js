@@ -10,12 +10,10 @@ export default function Navbar(props) {
 
   useEffect( () => {
     if (props.authed) {
-      let categoriesTemp = [];
       fetch('/api/category/get_categories').then((response) => {
         response.json.forEach(category => {
-          categoriesTemp.push(category.name);
+          categories.push(category.name);
         });
-        setCategories(categoriesTemp);
       })
     }
   }, [props.authed, categories, setCategories])
@@ -54,7 +52,7 @@ export default function Navbar(props) {
         spacing={{base: 3, md: 1}}
         className={styles["stack"]}
       >
-        { !!props.authed ? categories.map((val, idx) => {
+        { categories.map((val, idx) => {
           return (
             <Center 
               key={idx} 
