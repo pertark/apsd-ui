@@ -30,7 +30,7 @@ export default function Home() {
   })
 
   return (
-    <Layout authed={true}>
+    <Layout>
       <p>{body}</p>
     </Layout>
   )
