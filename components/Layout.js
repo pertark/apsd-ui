@@ -5,13 +5,13 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 
 export default function Layout(props) {
-  var authed;
+  const [authed, setAuthed] = useState(false);
 
-  useEffect(async () => {
-    let response = await fetch('/api/user');
-
-    // if unauthorized this will always be false
-    authed = response.ok;
+  useEffect( () => {
+    fetch('/api/user').then((response) => {
+      // if unauthorized this will always be false
+      setAuthed(response.ok);
+    });
   })
 
   return (
