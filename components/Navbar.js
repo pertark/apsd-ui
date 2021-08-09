@@ -12,9 +12,11 @@ export default function Navbar(props) {
     if (props.authed) {
       fetch('/api/category/get_categories').then(async (response) => {
         let body = await response.json();
+        let tempCategories = [];
         body.forEach(category => {
-          categories.push(category.name);
+          tempCategories.push(category.name);
         });
+        setCategories(tempCategories);
       })
     }
   }, [props.authed, categories, setCategories])
