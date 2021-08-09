@@ -1,6 +1,6 @@
 import { Box, Button, Flex, Heading, Stack, Text, useDisclosure } from "@chakra-ui/react"
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
