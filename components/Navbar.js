@@ -2,11 +2,25 @@ import { Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, 
 import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
+import { useState, useEffect } from 'react';
 
 export default function Navbar(props) {
-  const categories = ["math", "i don't know", "something else", "more test data"]
+  var [categories, setCategories] = useState([])
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
+
+  useEffect( () => {
+    if (props.authed) {
+      fetch('/api/category/get_categories').then(async (response) => {
+        let body = await response.json();
+        let tempCategories = [];
+        body.forEach(category => {
+          tempCategories.push(category.name);
+        });
+        setCategories(tempCategories);
+      })
+    }
+  }, [props.authed])
 
   // console.log(styles)
   return (
@@ -42,7 +56,7 @@ export default function Navbar(props) {
         spacing={{base: 3, md: 1}}
         className={styles["stack"]}
       >
-        { !!props.authed ? categories.map((val, idx) => {
+        {!!props.authed ? categories.map((val, idx) => {
           return (
             <Center 
               key={idx} 
