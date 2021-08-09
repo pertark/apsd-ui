@@ -19,7 +19,7 @@ export default function Navbar(props) {
         setCategories(tempCategories);
       })
     }
-  }, [props.authed, categories, setCategories])
+  }, [props.authed])
 
   // console.log(styles)
   return (
