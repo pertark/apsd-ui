@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { PieChart } from 'react-minimal-pie-chart'
 import Exam from '../components/Exam'
 
-export default function Home({ authed, setAuth }) {
+export default function Category({ authed, setAuth }) {
   let toast = useToast()
   let body = "test"
   const [exams, setExams] = useState([]);
