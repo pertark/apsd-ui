@@ -4,19 +4,18 @@ import { useEffect, useState } from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-export default function Layout(props) {
-  const [authed, setAuthed] = useState(false);
+export default function Layout({ authed, setAuth, children }) {
 
   useEffect( () => {
     fetch('/api/user').then((response) => {
       // if unauthorized this will always be false
-      setAuthed(response.ok);
+      setAuth(response.ok);
     });
   })
 
   return (
     <Stack>
-      <Navbar authed={authed}></Navbar>
+      <Navbar></Navbar>
       <Box>
         { props.children }
       </Box>

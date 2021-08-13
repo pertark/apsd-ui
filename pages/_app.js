@@ -1,6 +1,7 @@
 import '../styles/globals.css'
 import { ChakraProvider } from "@chakra-ui/react"
 import { extendTheme } from "@chakra-ui/react"
+import { useState } from "react"
 
 function MyApp({ Component, pageProps }) {
   const theme = extendTheme({
@@ -12,11 +13,13 @@ function MyApp({ Component, pageProps }) {
         900: "#1a202c",
       },
     },
-  })
+  });
+
+  const [authed, setAuth] = useState(false);
 
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} />
+      <Component {...pageProps} authed={authed} setAuth={setAuth}/>
     </ChakraProvider>
   )
 }

@@ -7,28 +7,8 @@ import Cookies from 'js-cookie'
 import { useToast, Button, Box, Stack } from "@chakra-ui/react"
 import { Component, useEffect, useState } from 'react'
 
-export default function Home() {
-  let toast = useToast()
+export default function Home({ authed, setAuth }) {
   let body = "test"
-  const [authed, setAuth] = useState(false) 
-
-  useEffect(() => {
-    // append message to body to be popped up as a toast
-    let message = JSON.parse(Cookies.get('message') || "{}");
-    console.log(message)
-    if (message !== {}) {
-      if (message.name === "error") {
-        window.onload = toast({
-          title: "Error",
-          description: message.message,
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        });
-      }
-    }
-    Cookies.remove('message');
-  })
 
   const unauthed_body = (
     <Box>
@@ -49,7 +29,7 @@ export default function Home() {
   )
 
   return (
-    <Layout authed={authed}>
+    <Layout>
       <p>{body}</p>
       <Button onClick={()=>{setAuth(authed ? false : true)}}>switch auth debug</Button>
       {authed ? authed_body : unauthed_body}
