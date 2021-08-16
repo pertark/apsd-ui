@@ -98,7 +98,7 @@ export default function Navbar({ authed, setAuth }) {
         display={{ base: isOpen ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Link href={!!authed ? "/oauth/logout" : "/oauth/login"}>
+        <Link href={!!authed ? "/oauth/logout" : "/oauth/login"} passHref>
           <Button
             mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
             variant={"outline"}

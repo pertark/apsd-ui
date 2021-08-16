@@ -17,7 +17,7 @@ export default function Layout({ authed, setAuth, children }) {
     <Stack>
       <Navbar></Navbar>
       <Box>
-        { props.children }
+        { children }
       </Box>
       <Footer></Footer>
     </Stack>
