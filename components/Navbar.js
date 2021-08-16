@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, Spacer } from "@chakra-ui/react"
+import { useToast, Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, Spacer } from "@chakra-ui/react"
 import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
