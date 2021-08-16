@@ -13,12 +13,9 @@ export default function Exam({ uuid }) {
 
   let [exam, setExam] = useState({})
 
-  let uuid = router.query.uuid; 
-  if (uuid) {
-    fetch(`/api/exam/${uuid}`).then(async (response) => {
-      setExam(await response.json());
-    })
-  }
+  fetch(`/api/exam/${uuid}`).then(async (response) => {
+    setExam(await response.json());
+  })
 
   return (
     <Box>
