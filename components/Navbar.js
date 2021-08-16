@@ -31,7 +31,7 @@ export default function Navbar( props ) {
   })
 
   useEffect( () => {
-    if (authed) {
+    if (props.authed) {
       fetch('/api/category/get_categories').then(async (response) => {
         let body = await response.json();
         let tempCategories = [];
@@ -41,7 +41,7 @@ export default function Navbar( props ) {
         setCategories(tempCategories);
       })
     }
-  }, [authed])
+  }, [props.authed])
 
   return (
     <Flex
