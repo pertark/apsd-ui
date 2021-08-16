@@ -4,7 +4,9 @@ import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
 import { useState, useEffect } from 'react';
 
-export default function Navbar({ authed, setAuth }) {
+export default function Navbar( props ) {
+  const authed = props.authed;
+  const setAuth = props.setAuth;
   var [categories, setCategories] = useState([])
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
