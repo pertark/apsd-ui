@@ -17,6 +17,7 @@ export default function Category({ authed, setAuth }) {
 
   const router = useRouter()
 
+  // example category id: f688a741-365d-488c-baed-a6987fc3eef8
   useEffect(() => {
     let uuid = router.query.uuid; 
     if (uuid) {

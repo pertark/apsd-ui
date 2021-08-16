@@ -8,7 +8,7 @@ import { useToast, Button, Box, Stack } from "@chakra-ui/react"
 import { Component, useEffect, useState } from 'react'
 
 export default function Home({ authed, setAuth }) {
-  let body = "test"
+  let body = "hotfix 7"
 
   const unauthed_body = (
     <Box>
