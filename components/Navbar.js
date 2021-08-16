@@ -3,6 +3,7 @@ import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
 import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
 import { useState, useEffect } from 'react';
+import Cookies from 'js-cookie';
 
 export default function Navbar( props ) {
   const authed = props.authed;
