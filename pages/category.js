@@ -17,10 +17,15 @@ export default function Category({ authed, setAuth }) {
 
   const router = useRouter()
 
-  fetch(`/api/category/${uuid}`).then(async (response) => {
-    setExams(await response.json());
-  })
-  
+  useEffect(() => {
+    let uuid = router.query.uuid; 
+    if (uuid) {
+      fetch(`/api/category/${uuid}`).then(async (response) => {
+        setExams(await response.json());
+      })
+    }
+  }, [router.query.uuid])
+
   const unauthed_body = (
     <Box>
       Temporary page
