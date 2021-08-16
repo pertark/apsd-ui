@@ -6,8 +6,6 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 
 export default function Navbar( props ) {
-  const authed = props.authed;
-  const setAuth = props.setAuth;
   var [categories, setCategories] = useState([])
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
@@ -78,7 +76,7 @@ export default function Navbar( props ) {
         spacing={{base: 3, md: 1}}
         className={styles["stack"]}
       >
-        {!!authed ? categories.map((val, idx) => {
+        {!!props.authed ? categories.map((val, idx) => {
           return (
             <Center 
               key={idx} 
@@ -101,7 +99,7 @@ export default function Navbar( props ) {
         display={{ base: isOpen ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Link href={!!authed ? "/oauth/logout" : "/oauth/login"} passHref>
+        <Link href={!!props.authed ? "/oauth/logout" : "/oauth/login"} passHref>
           <Button
             mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
             variant={"outline"}
@@ -109,7 +107,7 @@ export default function Navbar( props ) {
             _hover={{ bg: "ap.300", borderColor: "ap.100" }}
             // onClick={!!props.authed ? ()=>{location.href = "/oauth/logout"} : ()=>{location.href = "/oauth/login"}}
           >
-            {!!authed ? "Log out": "Log in"}
+            {!!props.authed ? "Log out": "Log in"}
           </Button>
         </Link>
       </Box>
