@@ -1,16 +1,15 @@
-import { Box, Button, Flex, Heading, Stack, Text, useDisclosure } from "@chakra-ui/react"
-import { HamburgerIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from 'react';
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import { Box, Button, Flex, Heading, Stack, Text, useDisclosure } from '@chakra-ui/react'
+import { HamburgerIcon } from '@chakra-ui/icons'
+import { useEffect, useState } from 'react'
+import Navbar from './Navbar'
+import Footer from './Footer'
 
-export default function Layout({ authed, setAuth, children }) {
-
-  useEffect( () => {
+export default function Layout ({ authed, setAuth, children }) {
+  useEffect(() => {
     fetch('/api/user').then((response) => {
       // if unauthorized this will always be false
-      setAuth(response.ok);
-    });
+      setAuth(response.ok)
+    })
   })
 
   return (
