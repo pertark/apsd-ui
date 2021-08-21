@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import { ChakraProvider } from "@chakra-ui/react"
 import { extendTheme } from "@chakra-ui/react"
 import { useState } from "react"
+import UserContext from '../components/UserContext';
 
 function MyApp({ Component, pageProps }) {
   const theme = extendTheme({
@@ -14,12 +15,16 @@ function MyApp({ Component, pageProps }) {
       },
     },
   });
-
+  
+  
+  // let sharedState = { authed: false, setAuth: function(val){ console.log(this); this.authed = val } }
   const [authed, setAuth] = useState(false);
 
   return (
     <ChakraProvider theme={theme}>
-      <Component {...pageProps} authed={authed} setAuth={setAuth}/>
+      <UserContext.Provider value={{authed, setAuth}}>
+        <Component {...pageProps}/>
+      </UserContext.Provider>
     </ChakraProvider>
   )
 }

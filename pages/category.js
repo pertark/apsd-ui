@@ -5,12 +5,15 @@ import Navbar from '../components/Navbar'
 import Layout from '../components/Layout'
 import Cookies from 'js-cookie'
 import { useToast, Button, Box, Stack } from "@chakra-ui/react"
-import { Component, useEffect, useState } from 'react'
+import { useState, useEffect, useContext } from 'react';
 import { useRouter } from 'next/router'
 import { PieChart } from 'react-minimal-pie-chart'
 import Exam from '../components/Exam'
+import UserContext from '../components/UserContext';
 
-export default function Category({ authed, setAuth }) {
+export default function Category() {
+  const { authed, setAuth } = useContext(UserContext);
+
   let toast = useToast()
   let body = "test"
   const [exams, setExams] = useState([]);

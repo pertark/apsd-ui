@@ -1,10 +1,12 @@
 import { Box, Button, Flex, Heading, Stack, Text, useDisclosure } from "@chakra-ui/react"
 import { HamburgerIcon } from "@chakra-ui/icons";
-import { useEffect, useState } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import UserContext from '../components/UserContext';
 
-export default function Layout({ authed, setAuth, children }) {
+export default function Layout({ children }) {
+  const { setAuth } = useContext(UserContext);
 
   useEffect( () => {
     fetch('/api/user').then((response) => {

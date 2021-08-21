@@ -5,10 +5,13 @@ import Navbar from '../components/Navbar'
 import Layout from '../components/Layout'
 import Cookies from 'js-cookie'
 import { useToast, Button, Box, Stack } from "@chakra-ui/react"
-import { Component, useEffect, useState } from 'react'
+import { useState, useEffect, useContext } from 'react';
+import UserContext from '../components/UserContext';
 
-export default function Home({ authed, setAuth }) {
+export default function Home() {
   let body = "hotfix 7"
+
+  const { authed, setAuth } = useContext(UserContext); // todo: remove setAuth in future versions  
 
   const unauthed_body = (
     <Box>
