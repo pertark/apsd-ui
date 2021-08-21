@@ -1,7 +1,8 @@
-import { useToast, Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, Spacer } from "@chakra-ui/react"
-import { HamburgerIcon, StarIcon } from "@chakra-ui/icons";
+import { useToast, Box, Button, Flex, Heading, Stack, Slide, Text, Center, useDisclosure, Spacer } from '@chakra-ui/react'
+import { HamburgerIcon, StarIcon } from '@chakra-ui/icons'
 import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
+
 import { useState, useEffect, useContext } from 'react';
 import Cookies from 'js-cookie';
 import UserContext from "./UserContext";
@@ -14,24 +15,24 @@ export default function Navbar( props ) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleToggle = () => (isOpen ? onClose() : onOpen());
 
-  let toast = useToast()
+  const toast = useToast()
 
   useEffect(() => {
     // append message to body to be popped up as a toast
-    let message = JSON.parse(Cookies.get('message') || "{}");
+    const message = JSON.parse(Cookies.get('message') || '{}')
     console.log(message)
     if (message !== {}) {
-      if (message.name === "error") {
+      if (message.name === 'error') {
         window.onload = toast({
-          title: "Error",
+          title: 'Error',
           description: message.message,
-          status: "error",
+          status: 'error',
           duration: 9000,
-          isClosable: true,
-        });
+          isClosable: true
+        })
       }
     }
-    Cookies.remove('message');
+    Cookies.remove('message')
   })
 
   useEffect( () => {
@@ -40,6 +41,7 @@ export default function Navbar( props ) {
         let body = await response.json();
         setCategories(body.map((category) => category.name));
       }).catch(()=>{console.log("request error")})
+
     }
   }, [authed])
 
@@ -51,30 +53,30 @@ export default function Navbar( props ) {
       wrap="wrap"
       bg="ap.200"
       color="white"
-      className={styles["big-flex"]}
+      className={styles['big-flex']}
       {...props}
     >
       <Flex align="center" mr={5} mt={6} mb={6} ml={6} pointerEvents="none">
-        <Heading as="h1" size="lg" letterSpacing={"tighter"} >
+        <Heading as="h1" size="lg" letterSpacing={'tighter'} >
           AP Score Distribution
         </Heading>
       </Flex>
 
-      <Box display={{ base: "block", md: "none" }} mr={6} onClick={handleToggle}>
+      <Box display={{ base: 'block', md: 'none' }} mr={6} onClick={handleToggle}>
         <HamburgerIcon />
       </Box>
 
       <Stack
-        height={{base: "100%", md: "5.5em" }}
+        height={{ base: '100%', md: '5.5em' }}
         margin="0"
         padding="0"
-        direction={{ base: "column", md: "row" }}
-        display={{ base: isOpen ? "block" : "none", md: "flex" }}
-        width={{ base: "full", md: "auto" }}
+        direction={{ base: 'column', md: 'row' }}
+        display={{ base: isOpen ? 'block' : 'none', md: 'flex' }}
+        width={{ base: 'full', md: 'auto' }}
         alignItems="center"
         flexGrow={1}
-        spacing={{base: 3, md: 1}}
-        className={styles["stack"]}
+        spacing={{ base: 3, md: 1 }}
+        className={styles.stack}
       >
         {!!authed ? categories.map((val, idx) => {
           return (
@@ -96,7 +98,7 @@ export default function Navbar( props ) {
       </Stack>
 
       <Box
-        display={{ base: isOpen ? "block" : "none", md: "block" }}
+        display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
         mt={{ base: 4, md: 0 }}
       >
         <Link href={!!authed ? "/oauth/logout" : "/oauth/login"} passHref>
@@ -107,9 +109,10 @@ export default function Navbar( props ) {
             _hover={{ bg: "ap.300", borderColor: "ap.100" }}
           >
             {!!authed ? "Log out": "Log in"}
+
           </Button>
         </Link>
       </Box>
     </Flex>
-  );
+  )
 };

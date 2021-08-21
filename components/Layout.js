@@ -9,10 +9,11 @@ export default function Layout({ children }) {
   const { setAuth } = useContext(UserContext);
 
   useEffect( () => {
+
     fetch('/api/user').then((response) => {
       // if unauthorized this will always be false
-      setAuth(response.ok);
-    });
+      setAuth(response.ok)
+    })
   })
 
   return (
