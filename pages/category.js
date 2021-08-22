@@ -30,8 +30,6 @@ export default function Category () {
     </Box>
   )
 
-  
-
   const authedBody = exams ? exams.map((val, idx) => { return (<Exam uuid={val} key={idx}></Exam>) }) : (<Box>loading...</Box>)
 
   return (

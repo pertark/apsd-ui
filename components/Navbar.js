@@ -3,17 +3,16 @@ import { HamburgerIcon, StarIcon } from '@chakra-ui/icons'
 import Link from 'next/link'
 import styles from '../styles/Navbar.module.css'
 
-import { useState, useEffect, useContext } from 'react';
-import Cookies from 'js-cookie';
-import UserContext from "./UserContext";
+import { useState, useEffect, useContext } from 'react'
+import Cookies from 'js-cookie'
+import UserContext from './UserContext'
 
-export default function Navbar( props ) {
+export default function Navbar (props) {
+  const { authed } = useContext(UserContext)
 
-  const { authed } = useContext(UserContext);
-
-  var [categories, setCategories] = useState([])
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const handleToggle = () => (isOpen ? onClose() : onOpen());
+  const [categories, setCategories] = useState([])
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const handleToggle = () => (isOpen ? onClose() : onOpen())
 
   const toast = useToast()
 
@@ -35,13 +34,12 @@ export default function Navbar( props ) {
     Cookies.remove('message')
   })
 
-  useEffect( () => {
+  useEffect(() => {
     if (authed) {
       fetch('/api/category/get_categories').then(async (response) => {
-        let body = await response.json();
-        setCategories(body.map((category) => category.name));
-      }).catch(()=>{console.log("request error")})
-
+        const body = await response.json()
+        setCategories(body.map((category) => category.name))
+      }).catch(() => { console.log('request error') })
     }
   }, [authed])
 
@@ -78,37 +76,39 @@ export default function Navbar( props ) {
         spacing={{ base: 3, md: 1 }}
         className={styles.stack}
       >
-        {!!authed ? categories.map((val, idx) => {
-          return (
-            <Center 
-              key={idx} 
-              h="100%" 
-              className={styles['menu-item']}
-              paddingX="0.5em"
-              bg="ap.200"
-            >
-              <StarIcon margin="0.2em" ml={{base: "1em", md: "0.2em"}}/>
-              <p>
-                <b>{val}</b>
-              </p>
-            </Center>
-          )
-        }) : <Box></Box>
-       }
+        {authed
+          ? categories.map((val, idx) => {
+            return (
+              <Center
+                key={idx}
+                h="100%"
+                className={styles['menu-item']}
+                paddingX="0.5em"
+                bg="ap.200"
+              >
+                <StarIcon margin="0.2em" ml={{ base: '1em', md: '0.2em' }}/>
+                <p>
+                  <b>{val}</b>
+                </p>
+              </Center>
+            )
+          })
+          : <Box></Box>
+        }
       </Stack>
 
       <Box
         display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
         mt={{ base: 4, md: 0 }}
       >
-        <Link href={!!authed ? "/oauth/logout" : "/oauth/login"} passHref>
+        <Link href={authed ? '/oauth/logout' : '/oauth/login'} passHref>
           <Button
-            mr={6} mt={{base: 1, md: 6}} mb={6} ml={5}
-            variant={"outline"}
-            
-            _hover={{ bg: "ap.300", borderColor: "ap.100" }}
+            mr={6} mt={{ base: 1, md: 6 }} mb={6} ml={5}
+            variant={'outline'}
+
+            _hover={{ bg: 'ap.300', borderColor: 'ap.100' }}
           >
-            {!!authed ? "Log out": "Log in"}
+            {authed ? 'Log out' : 'Log in'}
 
           </Button>
         </Link>

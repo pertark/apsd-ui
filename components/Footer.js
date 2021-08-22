@@ -1,5 +1,5 @@
-import { Box, Button, Flex, Heading, Stack, Slide, LinkGrid, StackDivider } from '@chakra-ui/react'
-import { HamburgerIcon, StarIcon } from '@chakra-ui/icons'
+import { Box } from '@chakra-ui/react'
+// import { HamburgerIcon, StarIcon } from '@chakra-ui/icons'
 
 export default function Footer (props) {
   return (
