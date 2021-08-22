@@ -3,5 +3,6 @@
   "rules": {
     // Indent with 4 spaces
     "indent": ["error", 2]
-  }
+  },
+  "globals": { "fetch": false }
 }

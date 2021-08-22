@@ -1,41 +1,37 @@
-import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Navbar from '../components/Navbar'
 import Layout from '../components/Layout'
-import Cookies from 'js-cookie'
-import { useToast, Button, Box, Stack } from "@chakra-ui/react"
-import { useState, useEffect, useContext } from 'react';
-import UserContext from '../components/UserContext';
+import { Button, Box, Stack } from '@chakra-ui/react'
+import { useContext } from 'react'
+import UserContext from '../components/UserContext'
 
-export default function Home() {
-  let body = "hotfix 7"
+export default function Home () {
+  const body = 'hotfix 7'
 
-  const { authed, setAuth } = useContext(UserContext); // todo: remove setAuth in future versions  
+  const { authed, setAuth } = useContext(UserContext) // todo: remove setAuth in future versions
 
-  const unauthed_body = (
+  const unauthedBody = (
     <Box>
-      <Stack direction={"column"} spacing={'1em'}>
+      <Stack direction={'column'} spacing={'1em'}>
         <Box>
           <h1 className={styles.title}>Compare yourself to your school</h1>
           <p className={styles.description}>Find out the score distributions for your AP tests</p>
         </Box>
-        <Stack direction={{ base: "column", md: "row" }}>
-          
+        <Stack direction={{ base: 'column', md: 'row' }}>
+
         </Stack>
       </Stack>
     </Box>
   )
 
-  const authed_body = (
+  const authedBody = (
     <h1>See how you did compared to your school!</h1>
   )
 
   return (
     <Layout>
       <p>{body}</p>
-      <Button onClick={()=>{setAuth(authed ? false : true)}}>switch auth debug</Button>
-      {authed ? authed_body : unauthed_body}
+      <Button onClick={() => { setAuth(!authed) }}>switch auth debug</Button>
+      {authed ? authedBody : unauthedBody}
     </Layout>
   )
 }

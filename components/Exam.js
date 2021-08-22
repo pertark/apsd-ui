@@ -1,12 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import Navbar from '../components/Navbar'
-import Layout from '../components/Layout'
-import Cookies from 'js-cookie'
-import { useToast, Button, Box, Stack, HStack } from '@chakra-ui/react'
-import { Component, useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
+import { Box, HStack } from '@chakra-ui/react'
+import { useState } from 'react'
 import { PieChart } from 'react-minimal-pie-chart'
 
 export default function Exam ({ uuid }) {
@@ -15,6 +8,9 @@ export default function Exam ({ uuid }) {
   fetch(`/api/exam/${uuid}`).then(async (response) => {
     setExam(await response.json())
   })
+
+  // adjust color palette to match 5/4/3/2/1
+  const colorPalette = ['#f4511e', '#fb8c00', '#ffc107', '#8bc34a', '#26a69a', '#00bcd4', '#03a9f4', '#2196f3', '#3f51b5', '#5e35b1']
 
   return (
     <Box>
@@ -30,19 +26,19 @@ export default function Exam ({ uuid }) {
           )}
           labelPosition={110} // a percentage
           labelStyle={(index) => ({
-            fill: pieData[index].color,
+            fill: colorPalette[index],
             fontSize: '16px',
             fontFamily: 'sans-serif',
             pointerEvents: 'none',
             userSelect: 'none'
           })}
-          segmentsStyle={(index) => {
-            const segStyle = { transition: 'stroke .2s', cursor: 'pointer' }
-            if (index == focused) {
-              segStyle.filter = 'brightness(85%)'
-            }
-            return segStyle
-          }}
+          // segmentsStyle={(index) => {
+          //   const segStyle = { transition: 'stroke .2s', cursor: 'pointer' }
+          //   if (index === focused) {
+          //     segStyle.filter = 'brightness(85%)'
+          //   }
+          //   return segStyle
+          // }}
           radius={150}
           viewBoxSize={[800, 400]}
           center={[400, 200]}
