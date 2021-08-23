@@ -9,7 +9,7 @@ export default function Category () {
   const { authed, setAuth } = useContext(UserContext)
 
   const body = 'test'
-  const [exams, setExams] = useState([])
+  const [exams, setExams] = useState(null)
 
   const router = useRouter()
 
@@ -30,7 +30,7 @@ export default function Category () {
     </Box>
   )
 
-  const authedBody = exams ? exams.map((val, idx) => { return (<Exam uuid={val} key={idx}></Exam>) }) : (<Box>loading...</Box>)
+  const authedBody = exams ? ( exams.length != 0 ? exams.map((val, idx) => { return (<Exam uuid={val} key={idx}></Exam>) }) : <Box>No exams in this category!!</Box>) : (<Box>loading...</Box>)
 
   return (
     <Layout authed={authed}>
