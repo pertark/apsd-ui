@@ -38,7 +38,7 @@ export default function Navbar (props) {
     if (authed) {
       fetch('/api/category/get_categories').then(async (response) => {
         const body = await response.json()
-        setCategories(body.map((category) => category.name))
+        setCategories(body)
       }).catch(() => { console.log('request error') })
     }
   }, [authed])
@@ -55,9 +55,11 @@ export default function Navbar (props) {
       {...props}
     >
       <Flex align="center" mr={5} mt={6} mb={6} ml={6} pointerEvents="none">
-        <Heading as="h1" size="lg" letterSpacing={'tighter'} >
-          AP Score Distribution
-        </Heading>
+        <Link href={'/'} passHref>
+          <Heading as="h1" size="lg" letterSpacing={'tighter'} >
+            AP Score Distribution
+          </Heading>
+        </Link>
       </Flex>
 
       <Box display={{ base: 'block', md: 'none' }} mr={6} onClick={handleToggle}>
@@ -79,18 +81,20 @@ export default function Navbar (props) {
         {authed
           ? categories.map((val, idx) => {
             return (
-              <Center
-                key={idx}
-                h="100%"
-                className={styles['menu-item']}
-                paddingX="0.5em"
-                bg="ap.200"
-              >
-                <StarIcon margin="0.2em" ml={{ base: '1em', md: '0.2em' }}/>
-                <p>
-                  <b>{val}</b>
-                </p>
-              </Center>
+              <Link href={'/category?uuid=' + val.id} passHref>
+                <Center
+                  key={idx}
+                  h="100%"
+                  className={styles['menu-item']}
+                  paddingX="0.5em"
+                  bg="ap.200"
+                >
+                  <StarIcon margin="0.2em" ml={{ base: '1em', md: '0.2em' }}/>
+                  <p>
+                    <b>{val.name}</b>
+                  </p>
+                </Center>
+              </Link>
             )
           })
           : <Box></Box>
