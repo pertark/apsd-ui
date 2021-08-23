@@ -81,9 +81,8 @@ export default function Navbar (props) {
         {authed
           ? categories.map((val, idx) => {
             return (
-              <Link href={'/category?uuid=' + val.id} passHref>
+              <Link key={idx} href={'/category?uuid=' + val.id} passHref>
                 <Center
-                  key={idx}
                   h="100%"
                   className={styles['menu-item']}
                   paddingX="0.5em"
