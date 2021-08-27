@@ -8,8 +8,8 @@ import UserContext from '../components/UserContext'
 export default function Category () {
   const { authed, setAuth } = useContext(UserContext)
 
-  const body = 'test'
-  const [exams, setExams] = useState(null)
+  const [exams, setExams] = useState([])
+  const [body, setBody] = useState("")
 
   const router = useRouter()
 
@@ -18,7 +18,9 @@ export default function Category () {
     const uuid = router.query.uuid
     if (uuid) {
       fetch(`/api/category/${uuid}`).then(async (response) => {
-        setExams(await response.json())
+        let json = await response.json()
+        console.log(json)
+        setExams(json)
       })
     }
   }, [router.query.uuid])
@@ -30,13 +32,22 @@ export default function Category () {
     </Box>
   )
 
-  const authedBody = exams ? (exams.length !== 0 ? exams.map((val, idx) => { return (<Exam uuid={val} key={idx}></Exam>) }) : <Box>No exams in this category!!</Box>) : (<Box>loading...</Box>)
-
+  console.log(exams.length)
+  //const authedBody = !!exams ? (exams.length !== 0 ? exams.map((val, idx) => { return (<Exam uuid={val} key={idx}></Exam>) }) : <Box>No exams in this category!!</Box>) : (<Box>loading...</Box>)
+  
+  if ( exams ) {
+    if ( exams.length == 0 ) {
+      setBody(<Box>No Exams</Box>)
+    } else {
+      setBody(exams.map((val, idx) => <Box>placeholder {idx}, val {val}</Box>))
+    }
+  } else {
+    setBody(<Box>Loading...</Box>)
+  }
+  
   return (
     <Layout authed={authed}>
-      <p>{body}</p>
-      <Button onClick={() => { setAuth(!authed) }}>switch auth debug</Button>
-      {authed ? authedBody : unauthedBody}
+      {authed ? body : unauthedBody}
     </Layout>
   )
 }

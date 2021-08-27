@@ -7,7 +7,7 @@ import UserContext from '../components/UserContext'
 export default function Home () {
   const body = 'hotfix 7'
 
-  const { authed, setAuth } = useContext(UserContext) // todo: remove setAuth in future versions
+  const { authed } = useContext(UserContext) 
 
   const unauthedBody = (
     <Box>
@@ -30,7 +30,6 @@ export default function Home () {
   return (
     <Layout>
       <p>{body}</p>
-      <Button onClick={() => { setAuth(!authed) }}>switch auth debug</Button>
       {authed ? authedBody : unauthedBody}
     </Layout>
   )
