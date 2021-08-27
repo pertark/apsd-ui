@@ -54,7 +54,7 @@ export default function Navbar (props) {
       className={styles['big-flex']}
       {...props}
     >
-      <Flex align="center" mr={5} mt={6} mb={6} ml={6} pointerEvents="none">
+      <Flex align="center" mr={5} mt={6} mb={6} ml={6}>
         <Link href={'/'} passHref>
           <Heading as="h1" size="lg" letterSpacing={'tighter'} >
             AP Score Distribution
