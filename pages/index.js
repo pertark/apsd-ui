@@ -1,13 +1,13 @@
 import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
-import { Button, Box, Stack } from '@chakra-ui/react'
+import { Box, Stack } from '@chakra-ui/react'
 import { useContext } from 'react'
 import UserContext from '../components/UserContext'
 
 export default function Home () {
   const body = 'hotfix 7'
 
-  const { authed } = useContext(UserContext) 
+  const { authed } = useContext(UserContext)
 
   const unauthedBody = (
     <Box>
