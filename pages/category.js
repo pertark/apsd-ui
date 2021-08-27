@@ -1,5 +1,5 @@
 import Layout from '../components/Layout'
-import { Box } from '@chakra-ui/react'
+import { Box, Stack } from '@chakra-ui/react'
 import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
 // import Exam from '../components/Exam'
@@ -8,7 +8,7 @@ import UserContext from '../components/UserContext'
 export default function Category () {
   const { authed } = useContext(UserContext)
 
-  const [exams, setExams] = useState([])
+  // const [exams, setExams] = useState([])
   const [body, setBody] = useState('')
 
   const router = useRouter()
@@ -18,9 +18,18 @@ export default function Category () {
     const uuid = router.query.uuid
     if (uuid) {
       fetch(`/api/category/${uuid}`).then(async (response) => {
-        const json = await response.json()
-        console.log(json)
-        setExams(json)
+        const exams = await response.json()
+        // console.log(json)
+        // setExams(json)
+        if (exams) {
+          if (exams.length === 0) {
+            setBody(<Box>No Exams</Box>)
+          } else {
+            setBody(<Stack>{exams.map((val, idx) => <Box key={idx}>placeholder {idx}, val {val}</Box>)}</Stack>)
+          }
+        } else {
+          setBody(<Box>Loading...</Box>)
+        }
       })
     }
   }, [router.query.uuid])
@@ -32,18 +41,7 @@ export default function Category () {
     </Box>
   )
 
-  console.log(exams.length)
   // const authedBody = !!exams ? (exams.length !== 0 ? exams.map((val, idx) => { return (<Exam uuid={val} key={idx}></Exam>) }) : <Box>No exams in this category!!</Box>) : (<Box>loading...</Box>)
-
-  if (exams) {
-    if (exams.length === 0) {
-      setBody(<Box>No Exams</Box>)
-    } else {
-      setBody(exams.map((val, idx) => <Box key={idx}>placeholder {idx}, val {val}</Box>))
-    }
-  } else {
-    setBody(<Box>Loading...</Box>)
-  }
 
   return (
     <Layout authed={authed}>
