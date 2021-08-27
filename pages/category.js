@@ -18,7 +18,8 @@ export default function Category () {
     const uuid = router.query.uuid
     if (uuid) {
       fetch(`/api/category/${uuid}`).then(async (response) => {
-        const exams = await response.json()
+        const resp = await response.json()
+        const exams = resp.exams
         // console.log(json)
         // setExams(json)
         if (exams) {
