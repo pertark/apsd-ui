@@ -14,7 +14,7 @@ export default function Home () {
           <h1 className={styles.title}>Compare yourself to your school</h1>
           <p className={styles.description}>Find out the score distributions for your AP tests</p>
         </Box>
-        <Stack direction={{ base: 'column', md: 'row' }} align={"center"}>
+        <Stack direction={{ base: 'column', md: 'row' }} align={'center'}>
           <Box>
             <h2>information section</h2>
             <SkeletonText mt="4" noOfLines={4} spacing="4" />
