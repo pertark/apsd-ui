@@ -1,12 +1,10 @@
 import styles from '../styles/Home.module.css'
 import Layout from '../components/Layout'
-import { Box, Stack } from '@chakra-ui/react'
+import { Box, Stack, SkeletonText } from '@chakra-ui/react'
 import { useContext } from 'react'
 import UserContext from '../components/UserContext'
 
 export default function Home () {
-  const body = 'hotfix 7'
-
   const { authed } = useContext(UserContext)
 
   const unauthedBody = (
@@ -16,8 +14,15 @@ export default function Home () {
           <h1 className={styles.title}>Compare yourself to your school</h1>
           <p className={styles.description}>Find out the score distributions for your AP tests</p>
         </Box>
-        <Stack direction={{ base: 'column', md: 'row' }}>
-
+        <Stack direction={{ base: 'column', md: 'row' }} align={"center"}>
+          <Box>
+            <h2>information section</h2>
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
+          <Box>
+            <h2>information section</h2>
+            <SkeletonText mt="4" noOfLines={4} spacing="4" />
+          </Box>
         </Stack>
       </Stack>
     </Box>
@@ -29,7 +34,6 @@ export default function Home () {
 
   return (
     <Layout>
-      <p>{body}</p>
       {authed ? authedBody : unauthedBody}
     </Layout>
   )

@@ -2,7 +2,7 @@ import Layout from '../components/Layout'
 import { Box, Stack } from '@chakra-ui/react'
 import { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/router'
-// import Exam from '../components/Exam'
+import Exam from '../components/Exam'
 import UserContext from '../components/UserContext'
 
 export default function Category () {
@@ -13,7 +13,7 @@ export default function Category () {
 
   const router = useRouter()
 
-  // example category id: f688a741-365d-488c-baed-a6987fc3eef8
+  // example category id: 7f82f62b-3716-4846-8010-3b4268e06efd
   useEffect(() => {
     const uuid = router.query.uuid
     if (uuid) {
@@ -26,7 +26,8 @@ export default function Category () {
           if (exams.length === 0) {
             setBody(<Box>No Exams</Box>)
           } else {
-            setBody(<Stack>{exams.map((val, idx) => <Box key={idx}>placeholder {idx}, val {val}</Box>)}</Stack>)
+            // setBody(<Stack>{exams.map((val, idx) => <Box key={idx}>placeholder {idx}, val {val}</Box>)}</Stack>)
+            setBody(<Stack>{exams.map((val, idx) => <Exam key={idx} uuid={val} />)}</Stack>)
           }
         } else {
           setBody(<Box>Loading...</Box>)
